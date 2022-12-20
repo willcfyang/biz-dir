@@ -6,13 +6,17 @@ from bson.objectid import ObjectId
 from flask_cors import CORS, cross_origin
 import sys
 from flask import send_from_directory
-
+import urllib.parse
 
 app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
-client = MongoClient('localhost', 27017)
+username = urllib.parse.quote_plus('flask-mongodb')
+password = urllib.parse.quote_plus('P71Z1GaEQMI7xo7DEhCKd7ruKiUf7cm5hqNDbnb4R663hNQ4IoBAAsSXEmXHS0UMJPGbCBMGGta9ACDbzBY2Cw==')
+#client = MongoClient('localhost', 27017)
+client = MongoClient('mongodb://%s:%s@flask-mongodb.mongo.cosmos.azure.com' % (username, password), port = 10255, tls=True, retrywrites=False)
+#client = MongoClient('lask-mongodb.mongo.cosmos.azure.com', port = 10255, tls=True,)
 
 db = client.biz_dir
 com_info = db.company_info
