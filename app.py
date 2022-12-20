@@ -4,6 +4,9 @@ from pymongo import MongoClient
 from bson import json_util 
 from bson.objectid import ObjectId
 from flask_cors import CORS, cross_origin
+import sys
+from flask import send_from_directory
+
 
 app = Flask(__name__)
 cors = CORS(app)
@@ -82,6 +85,13 @@ def update_company_info():
     upsert=True,
     )
     return json_util.dumps({'ret':0, 'msg':''})
+
+@app.route('/<first>')
+@app.route('/<first>/<path:rest>')
+def fallback(first=None, rest=None):
+    return send_from_directory('dist/todo', first)
+    #return 'This one catches everything else'
+
 
 
 if __name__ == '__main__':
