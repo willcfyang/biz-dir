@@ -24,6 +24,7 @@ jobs:
 
       - name: Install and build Vue.js project
         run: |
+          npm install
           npm run build
           #npm install -g @angular/cli
           #ng build --output-hashing none
