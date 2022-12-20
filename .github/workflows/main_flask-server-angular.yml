@@ -24,9 +24,9 @@ jobs:
 
       - name: Install and build Vue.js project
         run: |
-          npm i -D @angular-devkit/build-angular
-          npm install -g @angular/cli
-          ng build --output-hashing none
+          npm run build
+          #npm install -g @angular/cli
+          #ng build --output-hashing none
 
       - name: Set up Python version
         uses: actions/setup-python@v1
