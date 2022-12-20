@@ -1,0 +1,39 @@
+<div class="main">
+  <h1>Business Directory</h1>
+  
+  <input
+    #newItem1
+    placeholder="type company name"
+    class="lg-text-input"
+    id="addItemInput" />
+  <input
+    #newItem2
+    placeholder="type location type"
+    class="lg-text-input"
+    id="addItemInput" />
+  <input
+    #newItem3
+    placeholder="type country"
+    class="lg-text-input"
+    id="addItemInput" />
+  <input
+    #newItem4
+    placeholder="type address"
+    class="lg-text-input"
+    id="addItemInput" />
+  
+  <button class="btn-primary" (click)="addItem(newItem1.value, newItem2.value,newItem3.value, newItem4.value)">Add</button>
+  <button class="btn-primary" (click)="searchItem(newItem1.value, newItem2.value,newItem3.value, newItem4.value)">Search</button>
+  <!-- Buttons that show all, still to do, or done items on click -->
+  <!-- Buttons that show all, still to do, or done items on click -->
+  
+
+  <h2>{{items.length}} <span *ngIf="items.length === 1; else elseBlock">item</span>
+  <ng-template #elseBlock>items</ng-template></h2>
+  
+  <ul>
+    <li *ngFor="let i of items">
+      <app-item (remove)="remove(i)" [item]="i"></app-item>
+    </li>
+  </ul>
+</div>
