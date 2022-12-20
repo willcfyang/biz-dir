@@ -16,6 +16,16 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      
+      - name: Set up Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16
+
+      - name: Install and build Vue.js project
+        run: |
+          npm install -g @angular/cli
+          ng build --output-hashing none
 
       - name: Set up Python version
         uses: actions/setup-python@v1
@@ -38,6 +48,7 @@ jobs:
           name: python-app
           path: |
             . 
+            !node_modules/
             !venv/
 
   deploy:
